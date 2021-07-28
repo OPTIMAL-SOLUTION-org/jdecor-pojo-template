@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.optsol.jdecor</groupId>
+    <artifactId>jdecor-pojo-template</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <!-- Properties -->
+    <properties>
+        <source-encoding>UTF-8</source-encoding>
+        <output-encoding>UTF-8</output-encoding>
+
+        <project.build.sourceEncoding>${source-encoding}</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>${output-encoding}</project.reporting.outputEncoding>
+
+        <java.version>11</java.version>
+
+        <jdecor-version>0.2.0</jdecor-version>
+
+        <junit-jupiter-version>5.7.0</junit-jupiter-version>
+        <lombok-version>1.18.12</lombok-version>
+        <slf4j-version>1.7.31</slf4j-version>
+    </properties>
+
+    <developers>
+        <developer>
+            <name>Philipp Fath</name>
+            <email>philipp.fath@optimal-solution.org</email>
+            <organization>OPTIMAL SOLUTION</organization>
+            <organizationUrl>https://www.optimal-solution.org</organizationUrl>
+        </developer>
+        <developer>
+            <name>David Sayah</name>
+            <email>david.sayah@optimal-solution.org</email>
+            <organization>OPTIMAL SOLUTION</organization>
+            <organizationUrl>https://www.optimal-solution.org</organizationUrl>
+        </developer>
+    </developers>
+
+    <name>jDecOR Pojo Template</name>
+    <description>...a good point to start your optimization project</description>
+    <url>https://github.com/OPTIMAL-SOLUTION-org</url>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.optsol.jdecor</groupId>
+            <artifactId>jdecor-ortools</artifactId>
+            <version>${jdecor-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j-version}</version>
+        </dependency>
+
+        <!--TEST DEPENDENCIES-->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit-jupiter-version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--PROVIDED DEPENDENCIES-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok-version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>optimal-solution</id>
+            <url>https://maven.optimal-solution.org/repository/releases/</url>
+        </repository>
+    </repositories>
+</project>
