@@ -1,0 +1,40 @@
+{
+  "language": "eng",
+  "license": "other-open",
+  "title": "jDecOR Pojo Template",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/OPTIMAL-SOLUTION-org/jdecor-pojo-template/tree/0.0.1",
+      "relation": "isSupplementTo"
+    },
+    {
+      "scheme": "doi",
+      "identifier": "10.5281/zenodo.5144618",
+      "relation": "isVersionOf"
+    }
+  ],
+  "version": "0.0.1",
+  "upload_type": "software",
+  "keywords": [
+    "java",
+    "optimization",
+    "mixed-integer programming",
+    "operations research"
+  ],
+  "publication_date": "2021-07-29",
+  "creators": [
+    {
+      "orcid": "0000-0002-8763-2056",
+      "affiliation": "OPTIMAL-SOLUTION.org",
+      "name": "Fath, Philipp"
+    },
+    {
+      "orcid": "0000-0002-8977-9414",
+      "affiliation": "OPTIMAL-SOLUTION.org",
+      "name": "Sayah, David"
+    }
+  ],
+  "access_right": "open",
+  "description": "<p>...a good point to start your optimization project: <em><strong>jDecOR</strong></em> usage example!</p>\n\n<p>This project is a minimal example that demonstrates how to use the <em><strong>jDecOR</strong></em> framework to solve a mixed-integer program in Java.</p>"
+}

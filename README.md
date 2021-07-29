@@ -1,4 +1,4 @@
-# jdecor-pojo-template
+# jdecor-pojo-template [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5144618.svg)](https://doi.org/10.5281/zenodo.5144618)
 
 This project is a minimal example that demonstrates how to use the **_jDecOR_** framework to solve a mixed-integer program in Java.<br>
 It's just two lines of code to your [optimal solution](https://www.optimal-solution.org/) :wink::
@@ -194,9 +194,9 @@ x_c
 Extending this abstract class requires you to provide:
 1. a type parameter defining your available **constants** _(Section 2.2)_
 2. your selection of **solver engine** (CBC/SCIP/GLOP) to the super-constructor _(Section 2.3)_
-3. a definition of your **variables** implementing `generateVarManager()`-method  _(Section 2.4)_
-4. your definition of the **objective** by overriding `generateObjective()`-method _(Section 2.5)_
-5. a list of **constraints** in `generateConstraints()`-method _(Section 2.6)_
+3. a definition of your **variables** implementing `generateVarManager()` method  _(Section 2.4)_
+4. your definition of the **objective** by overriding `generateObjective()` method _(Section 2.5)_
+5. a list of **constraints** in `generateConstraints()` method _(Section 2.6)_
 
 ### 2.2 Constants `org.optsol.jdecor_pojo_template.model.constants.Constants`
 First you have to define an object holding the input parameters of an instance of your optimization problem. We prefer using an immutable object for that purpose. (see Lombok's [@Value](https://projectlombok.org/features/Value)).
@@ -207,7 +207,7 @@ We use our problem specific `Constants` to parameterize **_jDecOR_**'s `Abstract
 public class Model extends AbstractOrtoolsModelFactory<Constants>
 ```
 
-### 2.3 Solver-Engine
+### 2.3 Solver Engine
 **_jDecOR_** Framework is based on the well-known [Google OR-Tools](https://developers.google.com/optimization). The following solvers are prepackaged for Windows, Linux and MacOS:
 * `SolverEngine.CBC`: [CBC from the CoinOR project](https://github.com/coin-or/Cbc) (mixed-integer)
 * `SolverEngine.SCIP`: [SCIP](https://www.scipopt.org/) (mixed-integer)
@@ -263,7 +263,7 @@ Extending **_jDecOR_**'s `AbstractOrtoolsObjectiveManager` you can define the ob
   }
 ```
 
-Finally provide an instance of your objective class in the `generateObjective()`-method of your `Model`.
+Finally provide an instance of your objective class in the `generateObjective()` method of your `Model`.
 ```java
   @Override
   protected IObjectiveManager<
@@ -276,7 +276,7 @@ Finally provide an instance of your objective class in the `generateObjective()`
 Implementation of constraint groups should be based on **_jDecOR_**'s `AbstractOrtoolsConstraintManager`.
 #### This requires three steps for each constraint group:
 - **(I) Define constraint index structure**<br>
-  In accordance with our mathematical model, we define the constraint-group scoped index _m_:
+  In accordance with our mathematical model, we define the constraint group scoped index _m_:
 ```java
   public AvailableMetalQuantity() {
 	  //define constraint index m
@@ -323,7 +323,7 @@ Implementation of constraint groups should be based on **_jDecOR_**'s `AbstractO
 ```
 
 #### Finally stitch all defined constraint groups together:
-Provide an collection of instances of each constraint group in the `generateConstraints()` method of your `Model`:
+Provide a collection of instances of each constraint group in the `generateConstraints()` method of your `Model`:
 ```java
   @Override
   protected List<
