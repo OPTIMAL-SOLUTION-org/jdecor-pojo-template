@@ -28,7 +28,7 @@ You can fork this project if you want to quickstart your own implementation of a
         <dependency>
             <groupId>org.optsol.jdecor</groupId>
             <artifactId>jdecor-ortools</artifactId>
-            <version>0.2.1</version>
+            <version>0.3.0</version>
         </dependency>
     </dependencies>
 
