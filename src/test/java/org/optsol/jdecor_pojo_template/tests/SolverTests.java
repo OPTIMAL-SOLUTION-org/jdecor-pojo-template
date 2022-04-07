@@ -67,4 +67,23 @@ public class SolverTests {
 
     Utils.printSolution(solution, constants);
   }
+
+  //@Test //HINT: Gurobi must be installed under standard path!
+  //e.g.: C:\Program Files\Gurobi\win64\bin\gurobi90.dll
+  public void testSolveTepmlateModelWithGUROBI() {
+    Constants constants = Utils.generateConstants();
+
+    Solution solution = null;
+    try {
+      solution =
+          new Solver(SolverEngine.GUROBI)
+              .generateSolution(constants);
+    } catch (Exception ex) {
+      fail(ex);
+    }
+
+    assertEquals(SolutionState.OPTIMAL, solution.getSolutionState());
+
+    Utils.printSolution(solution, constants);
+  }
 }

@@ -28,7 +28,7 @@ You can fork this project if you want to quickstart your own implementation of a
         <dependency>
             <groupId>org.optsol.jdecor</groupId>
             <artifactId>jdecor-ortools</artifactId>
-            <version>0.3.0</version>
+            <version>0.4.0</version>
         </dependency>
     </dependencies>
 
@@ -212,6 +212,7 @@ public class Model extends AbstractOrtoolsModelFactory<Constants>
 * `SolverEngine.CBC`: [CBC from the CoinOR project](https://github.com/coin-or/Cbc) (mixed-integer)
 * `SolverEngine.SCIP`: [SCIP](https://www.scipopt.org/) (mixed-integer)
 * `SolverEngine.GLOP`: [GLOP](https://developers.google.com/optimization/lp/glop) (linear)
+* `SolverEngine.GUROBI`: [GUROBI](https://www.gurobi.com/) (mixed-integer) | Gurobi is not prepackaged! Gurobi must be installed under standard path on your machine!
 > Disclaimer: The usage of certain solver packages may be restricted by an appropriate licensing. Please ensure correct licensing in accordance with the solver provider's usage terms.
 
 **_jDecOR_** allows you to select a solver by providing the respective `SolverEngine` enum value to the constructor of `AbstractOrtoolsModelFactory`
