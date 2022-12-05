@@ -6,7 +6,7 @@
 
     <groupId>org.optsol.jdecor</groupId>
     <artifactId>jdecor-pojo-template</artifactId>
-    <version>0.0.5</version>
+    <version>0.0.6</version>
 
     <!-- Properties -->
     <properties>
@@ -18,11 +18,11 @@
 
         <java.version>11</java.version>
 
-        <jdecor-version>0.5.0</jdecor-version>
+        <jdecor-version>0.6.0</jdecor-version>
 
-        <junit-jupiter-version>5.8.2</junit-jupiter-version>
-        <lombok-version>1.18.22</lombok-version>
-        <slf4j-version>1.7.36</slf4j-version>
+        <junit-jupiter-version>5.9.1</junit-jupiter-version>
+        <lombok-version>1.18.24</lombok-version>
+        <slf4j-version>2.0.5</slf4j-version>
     </properties>
 
     <developers>
@@ -79,7 +79,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>3.10.1</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>

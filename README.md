@@ -28,7 +28,7 @@ You can fork this project if you want to quickstart your own implementation of a
         <dependency>
             <groupId>org.optsol.jdecor</groupId>
             <artifactId>jdecor-ortools</artifactId>
-            <version>0.5.0</version>
+            <version>0.6.0</version>
         </dependency>
     </dependencies>
 
@@ -193,7 +193,7 @@ x_c
 **_jDecOR_** provides a class for our model definition: `AbstractOrtoolsModelFactory`<br>
 Extending this abstract class requires you to provide:
 1. a type parameter defining your available **constants** _(Section 2.2)_
-2. your selection of **solver engine** (CBC/SCIP/GLOP) to the super-constructor _(Section 2.3)_
+2. your selection of **solver engine** (CBC/SCIP/GLOP/GUROBI) to the super-constructor _(Section 2.3)_
 3. a definition of your **variables** implementing `generateVarManager()` method  _(Section 2.4)_
 4. your definition of the **objective** by overriding `generateObjective()` method _(Section 2.5)_
 5. a list of **constraints** in `generateConstraints()` method _(Section 2.6)_
@@ -348,17 +348,54 @@ Provide a collection of instances of each constraint group in the `generateConst
 - **Basic solution information**<br>
   Every solution contains basic information such as SolutionState, ObjectiveValue, BestObjectiveBound and SolutionTime. **_jDecOR_**'s `ISolution` interface describes getters for these values. Just extend `ISolution` in your individual solution definition.
 
--  **Values of variables**<br>
-   To retrieve all values of a variable group define a method in your solution interface with the following properties:
-    - method name:<br>
-      "get_"+ variable group name (e.g. `get_x()` )
-    - return type:<br>
-      Type of the variable (`Double`/`Integer`/`Boolean`) and dimension of its index (e.g. 1D: `[]` / 2D: `[][]`)
-```java
-public interface Solution extends ISolution {
-  Integer[] get_x();
-}
-```
+- **Values of variables**<br>
+  To retrieve all values of a variable group, you simply need to define a method in your solution interface whose name starts with "get_"
+  followed by a variable group name (e.g. `get_x()`).
+  **_jDecOR_** offers two options to access solution data. You must choose one of the two options by
+  specifying the return type of your getter method:
+
+  1. **_Access-by-index_**
+     - specify return type as a single `Double`/`Integer`/`Boolean` according to the type of variable or as a multidimensional array (e.g., 1D: `Integer[]`, 2D: `Boolean[][]`)
+     - example:
+
+    ```java
+    public interface Solution extends ISolution {
+      Integer[] get_x();
+    }
+          
+    //...  somewhere deep in your code
+    Integer[] x = solution.get_x();
+    // sum up all x_c values
+    int total = 0;
+    for (int c : constants.get_C()) {
+      total += x[c];
+    }
+    ```
+
+  2. **_Access-by-name_** via map
+     - return type:<br>
+        `java.util.Map` with
+        - key type parameter: `String` because key objects represent variable names; a variable name is defined as a variable group name (e.g., "x") followed by an underscore-separated list of integer-valued indices (e.g., "_1" or "_1_8_7")
+        - value type parameter: depends on the type of variable (`Double`/`Integer`/`Boolean`)
+     - example:
+
+    ```java
+    public interface Solution extends ISolution {
+      Map<String, Integer> get_x();
+    }
+             
+    //...  somewhere deep in your code
+    Map<String, Integer> x = solution.get_x();
+    // sum up all x_c values
+    int total = 0;
+    for (int c : constants.get_C()) {
+      String varName = "x_" + c;
+      total += x.get(varName);
+    }
+    ```
+
+> Note: In case your model has many variables with two or more indices, we recommend the access-by-name option.
+> Otherwise, solution retrieval can become quite slow since **_jDecOR_** makes heavily use of Java's reflection API under the hood... :wink:
 
 ### 3.2 Solver Definition `org.optsol.jdecor_pojo_template.solver.Solver`
 A convenient way to set up a problem specific solver is to extend **_jDecOR_**'s `OrtoolsSolver`  parameterized with your `Constants` and `Solution`. Additionally the solver needs to know your choice of solver engine and time limit.
