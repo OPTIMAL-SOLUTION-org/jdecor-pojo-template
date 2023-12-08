@@ -4,6 +4,7 @@ import com.google.ortools.linearsolver.MPObjective;
 import com.google.ortools.linearsolver.MPSolver;
 import com.google.ortools.linearsolver.MPVariable;
 import org.optsol.jdecor.core.AbstractVariableManager;
+import org.optsol.jdecor.core.IVariableProvider;
 import org.optsol.jdecor.ortools.AbstractOrtoolsObjectiveManager;
 import org.optsol.jdecor_pojo_template.model.constants.Constants;
 import org.optsol.jdecor_pojo_template.model.variables.Variables;
@@ -14,7 +15,7 @@ public class MaximizeProfit extends AbstractOrtoolsObjectiveManager<Constants> {
   protected void configureObjective(
       MPObjective objective,
       Constants constants,
-      AbstractVariableManager<MPSolver, MPVariable> variables) throws Exception {
+      IVariableProvider<MPVariable> variables) throws Exception {
     //max sum_c:C[ P_c * x_c ]
     objective.setMaximization();
 

@@ -3,9 +3,10 @@ package org.optsol.jdecor_pojo_template.model.constants;
 import java.util.List;
 import java.util.Map;
 import lombok.Value;
+import org.optsol.jdecor.core.IConstants;
 
 @Value
-public class Constants {
+public class Constants implements IConstants {
   //SETS
   List<Integer> _C;
   List<Integer> _M;

@@ -21,7 +21,7 @@ public class Model extends AbstractOrtoolsModelFactory<Constants> {
   }
 
   @Override
-  protected AbstractVariableManager<MPSolver, MPVariable> generateVarManager() {
+  protected AbstractVariableManager<MPSolver, MPVariable, Constants> generateVarManager() {
     return
         new OrtoolsVariableManager.Builder()
             // x : int+

@@ -28,7 +28,7 @@ You can fork this project if you want to quickstart your own implementation of a
         <dependency>
             <groupId>org.optsol.jdecor</groupId>
             <artifactId>jdecor-ortools</artifactId>
-            <version>0.6.0</version>
+            <version>0.8.0</version>
         </dependency>
     </dependencies>
 
@@ -233,7 +233,7 @@ We recommend listing your variable group names in a dedicated class such as an e
 Using the builder of the `OrtoolsVariableManager` you can define bounds for groups of variables or restrict them to integer values. Any lazily generated variable not restricted in the `OrtoolsVariableManager`, will be unbounded and continous by default.
 ```java
   @Override
-  protected AbstractVariableManager<MPSolver, MPVariable> generateVarManager() {
+  protected AbstractVariableManager<MPSolver, MPVariable, Constants> generateVarManager() {
     return
         new OrtoolsVariableManager.Builder()
             // x : int+
@@ -252,7 +252,7 @@ Extending **_jDecOR_**'s `AbstractOrtoolsObjectiveManager` you can define the ob
   protected void configureObjective(
       MPObjective objective,
       Constants constants,
-      AbstractVariableManager<MPSolver, MPVariable> variables) throws Exception {
+      IVariableProvider<MPVariable>  variables) throws Exception {
     //max sum_c:C[ P_c * x_c ]
     objective.setMaximization();
 
@@ -307,7 +307,7 @@ Implementation of constraint groups should be based on **_jDecOR_**'s `AbstractO
   protected void configureConstraint(
       MPConstraint constraint,
       Constants constants,
-      AbstractVariableManager<MPSolver, MPVariable> variables,
+      IVariableProvider<MPVariable>  variables,
       ConstraintKey index) throws Exception {
     //configure constraint for index m:
     int m = index.get("m");

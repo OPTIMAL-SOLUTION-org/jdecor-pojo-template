@@ -6,6 +6,7 @@ import com.google.ortools.linearsolver.MPVariable;
 import java.util.Collection;
 import java.util.HashSet;
 import org.optsol.jdecor.core.AbstractVariableManager;
+import org.optsol.jdecor.core.IVariableProvider;
 import org.optsol.jdecor.ortools.AbstractOrtoolsConstraintManager;
 import org.optsol.jdecor_pojo_template.model.constants.Constants;
 import org.optsol.jdecor_pojo_template.model.variables.Variables;
@@ -31,7 +32,7 @@ public class AvailableMetalQuantity
   protected void configureConstraint(
       MPConstraint constraint,
       Constants constants,
-      AbstractVariableManager<MPSolver, MPVariable> variables,
+      IVariableProvider<MPVariable> variables,
       ConstraintKey index) throws Exception {
     //configure constraint for index m:
     int m = index.get("m");
